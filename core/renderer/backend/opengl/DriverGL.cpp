@@ -24,6 +24,7 @@
  ****************************************************************************/
 
 #include "DriverGL.h"
+#include "Common.h"
 #include "RenderPipelineGL.h"
 #include "BufferGL.h"
 #include "ShaderModuleGL.h"
@@ -34,6 +35,7 @@
 #include "DriverGL.h"
 #include "RenderTargetGL.h"
 #include "MacrosGL.h"
+#include "Utils.h"
 #include "renderer/backend/ProgramManager.h"
 #if !defined(__APPLE__) && AX_TARGET_PLATFORM != AX_PLATFORM_WINRT
 #    include "CommandBufferGLES2.h"

@@ -29,8 +29,6 @@ THE SOFTWARE.
 
 #include "platform/PlatformMacros.h"
 
-#include "axmolver.h"
-
 namespace ax
 {
 

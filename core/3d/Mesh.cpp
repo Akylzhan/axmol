@@ -41,7 +41,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/backend/Buffer.h"
 #include "renderer/backend/Program.h"
-#include "renderer/RenderConsts.h"
+// #include "renderer/RenderConsts.h"
 #include "math/Mat4.h"
 
 using namespace std;

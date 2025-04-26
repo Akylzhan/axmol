@@ -127,8 +127,8 @@ public:
     bool hasExtension(std::string_view /*extName*/) const override;
 
     /**
-    * Dump all extensions to string
-    */
+     * Dump all extensions to string
+     */
     std::string dumpExtensions() const override;
 
     /**
@@ -139,8 +139,8 @@ public:
     bool checkForFeatureSupported(FeatureType feature) override;
 
     /*
-    * Check does the device only support GLES2.0
-    */
+     * Check does the device only support GLES2.0
+     */
     bool isGLES2Only() const;
 
 protected:

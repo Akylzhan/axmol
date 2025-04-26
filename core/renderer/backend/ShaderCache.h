@@ -29,6 +29,8 @@
 #include "platform/PlatformMacros.h"
 #include "renderer/backend/ShaderModule.h"
 
+#include "base/Logging.h"
+
 #include <string>
 #include <unordered_map>
 

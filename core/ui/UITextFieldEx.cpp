@@ -23,7 +23,13 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "UITextFieldEx.h"
+
 #include "base/Director.h"
+#include "platform/FileUtils.h"
+#include "2d/Sprite.h"
+#include "2d/ActionInterval.h"
+#include "base/EventDispatcher.h"
+#include "base/EventListenerTouch.h"
 
 namespace ax
 {

@@ -46,6 +46,8 @@
 #include "2d/Scene.h"
 #include "xxhash.h"
 
+#include "math/MathUtil.h"
+
 #include "renderer/backend/Backend.h"
 #include "renderer/backend/RenderTarget.h"
 

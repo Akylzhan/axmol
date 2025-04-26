@@ -30,6 +30,8 @@
 #include "base/Macros.h"
 #include "base/Configuration.h"
 
+#include "platform/FileUtils.h"
+
 #include "xxhash.h"
 #include <inttypes.h>
 

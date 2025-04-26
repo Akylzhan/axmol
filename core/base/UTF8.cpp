@@ -29,7 +29,9 @@
 #include "platform/Common.h"
 #include "base/Logging.h"
 #include "ConvertUTF.h"
+
 #include <limits>
+#include <cstdarg>
 
 using namespace llvm;
 

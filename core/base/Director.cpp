@@ -46,6 +46,7 @@ THE SOFTWARE.
 #include "renderer/TextureCache.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderState.h"
+#include "renderer/backend/DriverBase.h"
 #include "2d/Camera.h"
 #include "base/UserDefault.h"
 #include "base/Utils.h"

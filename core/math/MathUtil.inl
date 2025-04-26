@@ -19,6 +19,9 @@
  This file was modified to fit the axmol project
  */
 
+#include "Types.h"
+#include "math/MathBase.h"
+
 NS_AX_MATH_BEGIN
 
 class MathUtilC

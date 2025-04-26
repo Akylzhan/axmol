@@ -26,6 +26,7 @@
 #include <unordered_map>
 
 #include "base/Object.h"
+#include "renderer/backend/ProgramManager.h"
 #include "renderer/backend/ProgramState.h"
 #include "renderer/backend/Types.h"
 #include "renderer/Pass.h"

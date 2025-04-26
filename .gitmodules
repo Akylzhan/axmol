@@ -1,0 +1,3 @@
+[submodule "tests/axmol-sample-assets"]
+	path = tests/axmol-sample-assets
+	url = https://github.com/axmolengine/axmol-sample-assets

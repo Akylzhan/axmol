@@ -32,6 +32,8 @@ THE SOFTWARE.
 #include "base/AutoreleasePool.h"
 #include "base/Types.h"
 
+#include "platform/Common.h"
+
 namespace ax
 {
 

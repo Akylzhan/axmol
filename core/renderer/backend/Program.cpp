@@ -27,6 +27,8 @@
 #include "ProgramManager.h"
 #include "VertexLayout.h"
 
+#include "base/Types.h"
+
 NS_AX_BACKEND_BEGIN
 
 /*

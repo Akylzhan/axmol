@@ -31,6 +31,7 @@ THE SOFTWARE.
 #include <cstdlib>
 
 #include "platform/PlatformConfig.h"
+#include "platform/PlatformDefine.h"
 
 /**
  * @addtogroup base

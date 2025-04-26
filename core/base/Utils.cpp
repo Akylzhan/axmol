@@ -27,6 +27,8 @@ THE SOFTWARE.
 
 #include "base/Utils.h"
 
+#include "platform/FileStream.h"
+
 #include <cmath>
 #include <stdlib.h>
 

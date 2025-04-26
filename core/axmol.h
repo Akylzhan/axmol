@@ -30,8 +30,6 @@ THE SOFTWARE.
 #ifndef __AXMOL_H__
 #define __AXMOL_H__
 
-#include "axmolver.h"
-
 //
 // all axmol include files
 //

@@ -28,6 +28,8 @@
 #include "base/Data.h"
 #include "base/Logging.h"
 
+#include "base/Macros.h"
+
 namespace ax
 {
 

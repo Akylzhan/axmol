@@ -39,6 +39,8 @@
 #include "platform/FileUtils.h"
 #include "base/Logging.h"
 
+#include "renderer/backend/ProgramManager.h"
+
 #include <sstream>
 
 #if defined(_WIN32)

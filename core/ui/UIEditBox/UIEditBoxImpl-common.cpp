@@ -31,6 +31,7 @@
 
 #include "ui/UIEditBox/UIEditBox.h"
 #include "base/Director.h"
+#include "platform/FileUtils.h"
 #include "2d/Label.h"
 #include "ui/UIHelper.h"
 

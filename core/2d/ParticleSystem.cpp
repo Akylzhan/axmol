@@ -46,8 +46,6 @@ THE SOFTWARE.
 
 #include "2d/ParticleSystem.h"
 
-#include <string>
-
 #include "2d/ParticleBatchNode.h"
 #include "renderer/TextureAtlas.h"
 #include "base/ZipUtils.h"
@@ -58,6 +56,9 @@ THE SOFTWARE.
 #include "renderer/TextureCache.h"
 #include "platform/FileUtils.h"
 
+#include <string>
+
+#include <arpa/inet.h>
 using namespace std;
 
 namespace ax

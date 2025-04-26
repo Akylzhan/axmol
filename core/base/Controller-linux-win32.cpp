@@ -34,7 +34,7 @@ THE SOFTWARE.
 #    include "base/Director.h"
 #    include "base/Scheduler.h"
 #    include "base/EventController.h"
-#    include "glfw3.h"
+#    include "GLFW/glfw3.h"
 
 namespace ax
 {

@@ -35,12 +35,14 @@ Copyright (c) 2019-present Axmol Engine contributors (see AUTHORS.md).
 
 #pragma once
 
+#include "base/Config.h"
+#include "platform/PlatformDefine.h"
+
 #include <vector>
 #include <memory>
 #include <string>
 #include <span>
-#include "base/Config.h"
-#include "platform/PlatformDefine.h"
+#include <functional>
 
 namespace ax
 {
@@ -102,7 +104,7 @@ public:
     void enqueue(std::function<void()> task, std::function<void()> done);
     void enqueue(std::shared_ptr<JobThreadTask> task);
 
- protected:
+protected:
     void init(const std::span<std::shared_ptr<JobThreadData>>& tdds);
 
 private:

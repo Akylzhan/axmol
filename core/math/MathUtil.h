@@ -24,12 +24,12 @@
 #ifndef MATHUTIL_H_
 #define MATHUTIL_H_
 
+#include "math/Mat4.h"
 #include "math/MathBase.h"
-
 
 namespace ax
 {
-    struct V3F_C4B_T2F;
+struct V3F_C4B_T2F;
 }
 
 /**

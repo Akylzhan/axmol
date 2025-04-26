@@ -27,6 +27,7 @@
 
 #include "../Macros.h"
 #include "../CommandBuffer.h"
+#include "Types.h"
 #include "base/EventListenerCustom.h"
 #include "platform/GL.h"
 

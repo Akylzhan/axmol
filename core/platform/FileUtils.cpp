@@ -49,7 +49,7 @@ THE SOFTWARE.
 #    include "yasio/string_view.hpp"
 #endif
 
-#include "pugixml/pugixml.hpp"
+#include "pugixml.hpp"
 
 #include "base/filesystem.h"
 

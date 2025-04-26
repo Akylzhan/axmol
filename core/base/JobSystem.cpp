@@ -25,6 +25,7 @@
 
 #include "base/JobSystem.h"
 #include "base/Director.h"
+#include "base/Scheduler.h"
 #include "yasio/thread_name.hpp"
 
 #include <queue>

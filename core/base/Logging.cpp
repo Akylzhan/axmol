@@ -30,11 +30,18 @@
 
 #if defined(_WIN32)
 #    include "ntcvt/ntcvt.hpp"
+#else
+extern "C" {
+#    include <unistd.h>
+}
+#    include <cstdarg>
 #endif
 
 #if defined(__ANDROID__)
 #    include <android/log.h>
 #endif
+
+#include "UTF8.h"
 
 namespace ax
 {
