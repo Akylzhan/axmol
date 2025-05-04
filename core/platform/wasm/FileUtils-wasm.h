@@ -33,7 +33,10 @@ THE SOFTWARE.
 #include "platform/FileUtils.h"
 #include "platform/PlatformMacros.h"
 #include "base/Types.h"
+
 #include <string>
+#include <sys/stat.h>
+#include <stdio.h>
 #include <vector>
 
 namespace ax

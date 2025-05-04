@@ -29,6 +29,8 @@
 
 #include "platform/StdC.h"
 
+#include "stdint.h"
+
 enum class ATITCDecodeFlag
 {
     ATC_RGB                = 1,

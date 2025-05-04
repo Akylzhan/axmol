@@ -25,6 +25,8 @@
 
 #include "base/atitc.h"
 
+#include "cstring"
+
 // Decode ATITC encode block to 4x4 RGB32 pixels
 static void atitc_decode_block(uint8_t** blockData,
                                uint32_t* decodeBlockData,
@@ -40,10 +42,10 @@ static void atitc_decode_block(uint8_t** blockData,
     uint32_t colors[4], pixelsIndex = 0;
 
     /* load the two color values*/
-    memcpy((void*)&colorValue0, *blockData, 2);
+    std::memcpy((void*)&colorValue0, *blockData, 2);
     (*blockData) += 2;
 
-    memcpy((void*)&colorValue1, *blockData, 2);
+    std::memcpy((void*)&colorValue1, *blockData, 2);
     (*blockData) += 2;
 
     // extract the msb flag
@@ -84,7 +86,7 @@ static void atitc_decode_block(uint8_t** blockData,
     }
 
     /*read the pixelsIndex , 2bits per pixel, 4 bytes */
-    memcpy((void*)&pixelsIndex, *blockData, 4);
+    std::memcpy((void*)&pixelsIndex, *blockData, 4);
     (*blockData) += 4;
 
     if (ATITCDecodeFlag::ATC_INTERPOLATED_ALPHA == decodeFlag)
@@ -175,7 +177,7 @@ void atitc_decode(uint8_t* encodeData,  // in_data
             break;
             case ATITCDecodeFlag::ATC_EXPLICIT_ALPHA:
             {
-                memcpy((void*)&blockAlpha, encodeData, 8);
+                std::memcpy((void*)&blockAlpha, encodeData, 8);
                 encodeData += 8;
                 atitc_decode_block(&encodeData, decodeBlockData, pixelsWidth, 1, blockAlpha,
                                    ATITCDecodeFlag::ATC_EXPLICIT_ALPHA);
@@ -183,7 +185,7 @@ void atitc_decode(uint8_t* encodeData,  // in_data
             break;
             case ATITCDecodeFlag::ATC_INTERPOLATED_ALPHA:
             {
-                memcpy((void*)&blockAlpha, encodeData, 8);
+                std::memcpy((void*)&blockAlpha, encodeData, 8);
                 encodeData += 8;
                 atitc_decode_block(&encodeData, decodeBlockData, pixelsWidth, 1, blockAlpha,
                                    ATITCDecodeFlag::ATC_INTERPOLATED_ALPHA);

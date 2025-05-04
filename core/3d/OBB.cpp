@@ -25,6 +25,8 @@
 
 #include "3d/OBB.h"
 
+#include "axmol.h"
+
 namespace ax
 {
 

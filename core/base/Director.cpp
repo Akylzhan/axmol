@@ -50,6 +50,7 @@ THE SOFTWARE.
 #include "2d/Camera.h"
 #include "base/UserDefault.h"
 #include "base/Utils.h"
+#include "base/EventType.h"
 #include "base/FPSImages.h"
 #include "base/Scheduler.h"
 #include "base/Macros.h"

@@ -24,6 +24,13 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "RenderTargetGL.h"
+
+#if AX_ENABLE_CACHE_TEXTURE_DATA
+#include "base/Director.h"
+#include "base/EventType.h"
+#include "base/EventDispatcher.h"
+#endif
+
 #include "DriverGL.h"
 #include "renderer/backend/opengl/MacrosGL.h"
 

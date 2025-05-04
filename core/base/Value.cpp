@@ -28,6 +28,7 @@
 #include <cmath>
 #include <sstream>
 #include <iomanip>
+#include <cfloat>
 #include "base/Utils.h"
 
 namespace ax

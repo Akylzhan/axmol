@@ -25,6 +25,8 @@ THE SOFTWARE.
 
 #include "math/Color.h"
 
+#include "axmol.h"
+
 #if defined(_WIN32)
 #    pragma push_macro("TRANSPARENT")
 #    undef TRANSPARENT

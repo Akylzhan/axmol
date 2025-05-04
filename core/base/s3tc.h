@@ -29,6 +29,8 @@
 
 #include "platform/StdC.h"
 
+#include "stdint.h"
+
 enum class S3TCDecodeFlag
 {
     DXT1 = 1,

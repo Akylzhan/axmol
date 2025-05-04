@@ -28,6 +28,7 @@ THE SOFTWARE.
 #include "2d/ProgressTimer.h"
 #include <algorithm>
 #include <stddef.h>  // offsetof
+#include <cfloat>
 #include "base/Types.h"
 #include "base/Macros.h"
 #include "base/Director.h"

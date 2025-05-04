@@ -27,6 +27,8 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "base/Profiling.h"
 
+#include "axmol.h"
+
 using namespace std;
 
 namespace ax

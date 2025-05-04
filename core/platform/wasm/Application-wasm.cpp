@@ -28,6 +28,12 @@ THE SOFTWARE.
 #include "platform/PlatformConfig.h"
 #if AX_TARGET_PLATFORM == AX_PLATFORM_WASM
 
+#include "base/EventDispatcher.h"
+#include "base/EventCustom.h"
+#include "base/EventType.h"
+#include "renderer/backend/DriverBase.h"
+#include "renderer/TextureCache.h"
+
 #    include "platform/wasm/Application-wasm.h"
 #    include "platform/wasm/devtools-wasm.h"
 #    include <unistd.h>

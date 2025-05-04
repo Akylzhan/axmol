@@ -1,7 +1,13 @@
 #pragma once
 #include "../RenderTarget.h"
+
+#if AX_ENABLE_CACHE_TEXTURE_DATA
+#include "base/EventListenerCustom.h"
+#endif
+
 #include "platform/GL.h"
 #include "OpenGLState.h"
+
 
 NS_AX_BACKEND_BEGIN
 

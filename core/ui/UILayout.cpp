@@ -38,6 +38,8 @@ THE SOFTWARE.
 #include "base/StencilStateManager.h"
 #include <algorithm>
 
+#include <cfloat>
+
 namespace ax
 {
 

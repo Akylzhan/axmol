@@ -25,6 +25,8 @@
 
 #include "base/s3tc.h"
 
+#include "cstring"
+
 // Decode S3TC encode block to 4x4 RGB32 pixels
 static void s3tc_decode_block(uint8_t** blockData,
                               uint32_t* decodeBlockData,
@@ -39,10 +41,10 @@ static void s3tc_decode_block(uint8_t** blockData,
     uint32_t colors[4], pixelsIndex = 0;
 
     /* load the two color values*/
-    memcpy((void*)&colorValue0, *blockData, 2);
+    std::memcpy((void*)&colorValue0, *blockData, 2);
     (*blockData) += 2;
 
-    memcpy((void*)&colorValue1, *blockData, 2);
+    std::memcpy((void*)&colorValue1, *blockData, 2);
     (*blockData) += 2;
 
     /* the channel is r5g6b5 , 16 bits */
@@ -74,7 +76,7 @@ static void s3tc_decode_block(uint8_t** blockData,
     colors[2] = rb2 + g2 + initAlpha;
 
     /*read the pixelsIndex , 2bits per pixel, 4 bytes */
-    memcpy((void*)&pixelsIndex, *blockData, 4);
+    std::memcpy((void*)&pixelsIndex, *blockData, 4);
     (*blockData) += 4;
 
     if (S3TCDecodeFlag::DXT5 == decodeFlag)
@@ -162,14 +164,14 @@ void s3tc_decode(uint8_t* encodeData,  // in_data
             break;
             case S3TCDecodeFlag::DXT3:
             {
-                memcpy((void*)&blockAlpha, encodeData, 8);
+                std::memcpy((void*)&blockAlpha, encodeData, 8);
                 encodeData += 8;
                 s3tc_decode_block(&encodeData, decodeBlockData, pixelsWidth, 1, blockAlpha, S3TCDecodeFlag::DXT3);
             }
             break;
             case S3TCDecodeFlag::DXT5:
             {
-                memcpy((void*)&blockAlpha, encodeData, 8);
+                std::memcpy((void*)&blockAlpha, encodeData, 8);
                 encodeData += 8;
                 s3tc_decode_block(&encodeData, decodeBlockData, pixelsWidth, 1, blockAlpha, S3TCDecodeFlag::DXT5);
             }

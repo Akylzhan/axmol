@@ -1,4 +1,3 @@
-add_requires("openssl3", {system = true})
 add_requires(
     "c-ares",
     "fmt",
@@ -8,32 +7,36 @@ add_requires(
     "stb",
     "pugixml",
     "libpng",
-    "libjpeg-turbo",
+    "libjpeg-turbo 3.1.0",
     "poly2tri", -- is the library still supported?
-    "simdjson",
+    "simdjson v3.12.3",
     "axslcc",
-    "box2d v3.1.0"
+    "box2d v2.4.2",
+    "openssl3 3.3.2"
 )
 
 add_requires("astc-encoder", {configs = {cli = false}}) -- enable intrinsics
-add_requires("fontconfig", {system = true}) -- linux only lib
-add_requires("gtk3", {system = true})
 
-add_requires("glfw", {configs = {wayland = false}})
+if is_plat("linux") then
+    add_requires("fontconfig", {system = true}) -- linux only lib
+    add_requires("gtk3", {system = true})
+    add_requires("glfw", {configs = {wayland = false}})
+    add_requires("opengl")
+end
 
 target("yasio")
-    set_kind("shared")
+    set_kind("static")
     add_files("3rdparty/yasio/yasio/*.cpp")
     add_includedirs("3rdparty/yasio/", {public = true})
     add_packages("openssl3", "c-ares")
 
 target("convert-utf")
-    set_kind("shared")
+    set_kind("static")
     add_files("3rdparty/ConvertUTF/*.cpp")
     add_includedirs("3rdparty/ConvertUTF/", {public = true})
 
 target("unzip")
-    set_kind("shared")
+    set_kind("static")
     add_files("3rdparty/unzip/*.c", "3rdparty/unzip/*.cpp")
     add_includedirs("3rdparty/unzip/", {public = true})
     add_packages("zlib")
@@ -41,12 +44,12 @@ target("unzip")
 
 -- TODO: use glad from xrepo
 target("glad")
-    set_kind("shared")
+    set_kind("static")
     add_files("3rdparty/glad/src/*.c")
     add_includedirs("3rdparty/glad/include", {public = true})
 
 target("xxhash")
-    set_kind("shared")
+    set_kind("static")
     add_files("3rdparty/xxhash/*.c")
     add_includedirs("3rdparty/xxhash", {public = true})
 
@@ -63,8 +66,8 @@ rule("axslcc")
             includedir = path.join(target:scriptdir(), includedir)
         end
         local flags = {
-            "--lang=glsl",
-            "--profile=330",
+            "--lang=gl" .. (is_plat("wasm") and "es" or "sl"),
+            "--profile=3" .. (is_plat("wasm") and "00" or "30"),
             "--automap",
             "--no-suffix",
             "--err-format=msvc",
@@ -85,8 +88,10 @@ rule("axslcc")
             print("extension " .. extension .. "not supported, file: " .. sourcefile)
         end
 
-        os.mkdir(target:targetdir())
-        local outputfile = path.absolute(path.join(target:targetdir(), filename))
+        os.mkdir(target:targetdir("axslc"))
+        local axslc_dir = path.join(target:targetdir(), "axslc")
+        os.mkdir(axslc_dir)
+        local outputfile = path.absolute(path.join(axslc_dir, filename))
         table.append(flags, "--output=" .. outputfile)
         batchcmds:vrunv(axslcc, flags)
 
@@ -98,7 +103,7 @@ rule("axslcc")
 rule_end()
 
 target("axmol")
-    set_kind("shared")
+    set_kind("static")
     add_files(
         "core/*.cpp",
         "core/base/*.cpp",
@@ -108,25 +113,25 @@ target("axmol")
         "core/2d/*.cpp",
         "core/3d/*.cpp",
         "core/math/*.cpp",
-        "core/physics/*.cpp",
         "core/ui/*.cpp",
         "core/ui/UIEditBox/UIEditBox.cpp",
         "core/ui/UIEditBox/UIEditBoxImpl-common.cpp",
-        "extensions/physics-nodes/src/physics-nodes/*.cpp"
+        "extensions/physics-nodes/src/physics-nodes/PhysicsSpriteBox2D.cpp",
+        "core/renderer/backend/opengl/*.cpp"
+    ) -- except apple
+
+    add_files(
+        "core/platform/$(plat)/*.cpp",
+        "core/ui/UIEditBox/UIEditBoxImpl-$(plat).cpp"
+    )
+    add_includedirs("core/platform/$(plat)", {public = true})
+    remove_files(
+        "core/base/Controller-android.cpp",
+        "core/base/Controller-linux-win32.cpp"
     )
 
     if is_plat("linux") then
-        remove_files("core/base/Controller-android.cpp")
-        add_files("core/platform/$(os)/*.cpp")
-        add_files("core/renderer/backend/opengl/*.cpp") -- except apple
-
-        add_files(
-            "core/ui/UIEditBox/UIEditBoxImpl-linux.cpp"
-            -- "core/ui/UIWebView/UIWebViewImpl-linux.cpp",
-            -- "core/ui/UIWebView/UIWebView.cpp"
-        )
-
-        add_includedirs("core/platform/$(os)", {public = true})
+        add_files("core/base/Controller-linux-win32.cpp")
     end
 
     add_includedirs(
@@ -142,7 +147,6 @@ target("axmol")
 
     add_deps("yasio", "convert-utf", "unzip", "glad", "xxhash")
     add_packages(
-        "glfw",
         "freetype",
         "clipper2",
         "stb",
@@ -153,8 +157,14 @@ target("axmol")
         "fontconfig",
         "poly2tri",
         "simdjson",
-        "gtk3"
+        "openssl3"
     )
+
+    if is_plat("linux") then
+        add_packages("glfw", "gtk3", "opengl")
+        add_defines("AX_USE_GL=1", {public = true})
+        add_links("GL", {public = true})
+    end
 
     add_packages("axslcc", {host = true})
 
@@ -164,12 +174,28 @@ target("axmol")
 
     add_defines(
         "AX_USE_WEBP=0", "AX_ENABLE_3D=1",
-        "AX_VERSION_STR_FULL=\"3.0.0\"",
+        "AX_VERSION_STR_FULL=\"2.6.0\"", -- move to axmolver.h.in
         "AX_MAX_DIRECTIONAL_LIGHT=1", "AX_MAX_POINT_LIGHT=1", "AX_MAX_SPOT_LIGHT=1",
         "AX_ENABLE_SCRIPT_BINDING=1",
         "_AX_DEBUG=1",
-        "AX_ENABLE_PHYSICS=1", {public = true}
+        -- "AX_ENABLE_PHYSICS=1",
+        {public = true}
     )
 
     add_rules("axslcc", {includedir = "core/renderer/shaders"})
     add_files("core/**.frag", "core/**.vert")
+
+    if is_plat("wasm") then
+        add_ldflags(
+            "-sUSE_GLFW=3 "..
+            "-sASSERTIONS "..
+            "-sMIN_WEBGL_VERSION=2 "..
+            "-sGL_ENABLE_GET_PROC_ADDRESS "..
+            "--use-preload-cache "..
+            -- "-pthread -sPTHREAD_POOL_SIZE=4 "..
+            "-sFORCE_FILESYSTEM=1 -sFETCH=1 "..
+            "-lidbfs.js",
+            {expand = false}
+        )
+        add_defines("AX_GLES_PROFILE=300", {public = true})
+    end
