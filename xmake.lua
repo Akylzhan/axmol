@@ -154,14 +154,13 @@ target("axmol")
         "libpng",
         "libjpeg-turbo",
         "astc-encoder",
-        "fontconfig",
         "poly2tri",
         "simdjson",
         "openssl3"
     )
 
     if is_plat("linux") then
-        add_packages("glfw", "gtk3", "opengl")
+        add_packages("glfw", "gtk3", "opengl", "fontconfig")
         add_defines("AX_USE_GL=1", {public = true})
         add_links("GL", {public = true})
     end
